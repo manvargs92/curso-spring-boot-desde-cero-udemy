@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller // indica a Spring que es una clase controladora
-public class UserController {
+public class UserMvcController {
 
-    @GetMapping("/details") // indica que es una petición GET
+    @GetMapping("/mvc/details") // indica que es una petición GET
     public String details(Model model) { // Model se utiliza para pasarle datos a la vista
         model.addAttribute("title", "Hola, Mundo con Spring Boot!!");
         model.addAttribute("name", "Manuel");
