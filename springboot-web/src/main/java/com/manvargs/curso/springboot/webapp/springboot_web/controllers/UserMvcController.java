@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,21 @@ public class UserMvcController {
 
     @GetMapping("/list")
     public String list(ModelMap modelMap) { // ModelMap es una lista de Model
+//        List<User> users = Arrays.asList( // Arrays.asList() forma corta en vez de usar new ArrayList<>() y llenar la lista con .add
+//                new User("Lalo", "Gonzáles", "lalo@correo"),
+//                new User("Juanita", "Roa", "juanita@correo"),
+//                new User("Andrés", "Doe", "andres@correo"),
+//                new User("María", "Hernández", "maria@correo")
+//        );
+
+//        modelMap.addAttribute("users", users);
+        modelMap.addAttribute("title", "Listado de usuarios");
+
+        return "list";
+    }
+
+    @ModelAttribute("users") // indica un modelo para poder ser reutilizado en varios lugares
+    public List<User> usersModel() {
         List<User> users = Arrays.asList( // Arrays.asList() forma corta en vez de usar new ArrayList<>() y llenar la lista con .add
                 new User("Lalo", "Gonzáles", "lalo@correo"),
                 new User("Juanita", "Roa", "juanita@correo"),
@@ -38,10 +54,7 @@ public class UserMvcController {
                 new User("María", "Hernández", "maria@correo")
         );
 
-        modelMap.addAttribute("users", users);
-        modelMap.addAttribute("title", "Listado de usuarios");
-
-        return "list";
+        return users;
     }
 
 }
