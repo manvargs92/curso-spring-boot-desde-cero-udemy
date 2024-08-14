@@ -1,5 +1,7 @@
 package com.manvargs.curso.springboot.webapp.springboot_web.models;
 
+/* Clase POJO */
+
 public class User {
 
     private String name;
