@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController // indica a Spring Boot que es una clase controladora Rest
@@ -16,7 +18,7 @@ import java.util.Map;
 public class UserRestController {
 
     @GetMapping("/details-map") // indica que es una petición GET
-    public Map<String, Object> details() {
+    public Map<String, Object> detailsWithMap() {
         User user = new User("Manuel", "Vargas");
 
         Map<String, Object> body = new HashMap<>();
@@ -30,7 +32,7 @@ public class UserRestController {
     }
 
     @RequestMapping(path="/more-details-map", method=RequestMethod.GET) // anotación cuyos parámetros indican manualmente el path y el método de la petición
-    public Map<String, Object> moreDetails() {
+    public Map<String, Object> moreDetailsWithMap() {
         Map<String, Object> body = new HashMap<>();
 
         body.put("example", "Un ejemplo usando @RequestMapping en el método.");
@@ -48,6 +50,20 @@ public class UserRestController {
 
         return userDto;
 
+    }
+
+    @GetMapping("/list")
+    public List<User> usersList() {
+        User user = new User("Juan", "Robles");
+        User user2 = new User("Luis", "Gonzáles");
+        User user3 = new User("José", "Chan");
+
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        users.add(user2);
+        users.add(user3);
+
+        return users;
     }
 
 }
