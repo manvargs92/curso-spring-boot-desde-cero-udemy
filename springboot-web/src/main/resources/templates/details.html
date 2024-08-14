@@ -16,6 +16,8 @@
 <!--        <li th:text="${lastName}"></li>-->
         <li th:text="${user.name}"></li> <!-- accede a los atributos por medio de los getters pero por "detrás de escena" -->
         <li th:text="${user.lastName}"></li>
+        <li th:if="${user.email != null}" th:text="${user.email}"></li> <!-- condicional en Thymeleaf para ocultar un elemento-->
+        <li th:if="${user.email == null}" th:text="${'No tiene contenido.'}"></li> <!-- condicional en Thymeleaf para un elemento por defecto -->
     </ul>
 
 </body>

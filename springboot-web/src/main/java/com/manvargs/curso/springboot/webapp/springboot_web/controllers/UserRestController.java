@@ -19,7 +19,7 @@ public class UserRestController {
 
     @GetMapping("/details-map") // indica que es una petición GET
     public Map<String, Object> detailsWithMap() {
-        User user = new User("Manuel", "Vargas");
+        User user = new User("Manuel", "Vargas", "manuel@correo.com");
 
         Map<String, Object> body = new HashMap<>();
 
@@ -42,7 +42,7 @@ public class UserRestController {
 
     @GetMapping("/detais-dto")
     public UserDto detailsWithDto() {
-        User user = new User("Andrés", "Guzmán");
+        User user = new User("Andrés", "Guzmán", "andres@correo.com");
         UserDto userDto = new UserDto();
 
         userDto.setUser(user);
@@ -54,9 +54,9 @@ public class UserRestController {
 
     @GetMapping("/list")
     public List<User> usersList() {
-        User user = new User("Juan", "Robles");
-        User user2 = new User("Luis", "Gonzáles");
-        User user3 = new User("José", "Chan");
+        User user = new User("Juan", "Robles", "juan@correo.com");
+        User user2 = new User("Luis", "Gonzáles", "luis@correo.com");
+        User user3 = new User("José", "Chan", "jose@correo.com");
 
         List<User> users = new ArrayList<>();
         users.add(user);
