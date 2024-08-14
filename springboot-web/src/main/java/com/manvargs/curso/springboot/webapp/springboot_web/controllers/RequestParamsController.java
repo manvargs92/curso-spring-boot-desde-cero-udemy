@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api-params")
 public class RequestParamsController {
 
-    @GetMapping("/send-parameters")
-    public ParamDto getParams(
-            @RequestParam( // @RequestParam pasar parámetros a través de la ruta url con url?parámetro
+    @GetMapping("/send-one-parameter")
+    public ParamDto getParam(
+            @RequestParam( // @RequestParam pasar parámetros a través de la ruta url con url?parámetro=valor
                     required = false, // setear si el parámetro es requerido o no
                     defaultValue = "Sin mensaje.", // setear un valor (mensaje) por defecto
                     name = "Mensajito") String message) { // setear el nombre del parámetro
@@ -22,6 +22,16 @@ public class RequestParamsController {
 //        paramDto.setMessage(message != null ? message : "Sin mensaje."); // setear un mensaje por default
 
         return paramDto;
+    }
+
+    @GetMapping("/send-parameters")
+    public ParamDto getParams(@RequestParam String text, @RequestParam int code) { // pasar múltiples parámetros con url?parámetro=valor&parámetro=valor
+        ParamDto paramsDto = new ParamDto();
+
+        paramsDto.setMessage(text);
+        paramsDto.setCode(code);
+
+        return paramsDto;
     }
 
 }
