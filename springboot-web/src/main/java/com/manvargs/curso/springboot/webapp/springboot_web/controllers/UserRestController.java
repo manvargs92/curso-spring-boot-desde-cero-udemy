@@ -1,5 +1,6 @@
 package com.manvargs.curso.springboot.webapp.springboot_web.controllers;
 
+import com.manvargs.curso.springboot.webapp.springboot_web.models.User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,14 @@ public class UserRestController {
 
     @GetMapping("/details") // indica que es una petición GET
     public Map<String, Object> details() {
+        User user = new User("Manuel", "Vargas");
+
         Map<String, Object> body = new HashMap<>();
 
         body.put("title", "Hola, Mundo con Spring Boot!!");
-        body.put("name", "Manuel");
-        body.put("lastName", "Vargas");
+        body.put("user", user);
+//        body.put("name", "Manuel");
+//        body.put("lastName", "Vargas");
 
         return body; // si trabajamos con servicios Rest, los controladores deben retornar JSON
     }

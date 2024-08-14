@@ -12,8 +12,10 @@
     <h1 th:text="${title}"></h1>
 
     <ul>
-        <li th:text="${name}"></li>
-        <li th:text="${lastName}"></li>
+<!--        <li th:text="${name}"></li>-->
+<!--        <li th:text="${lastName}"></li>-->
+        <li th:text="${user.name}"></li> <!-- accede a los atributos por medio de los getters pero por "detrás de escena" -->
+        <li th:text="${user.lastName}"></li>
     </ul>
 
 </body>
