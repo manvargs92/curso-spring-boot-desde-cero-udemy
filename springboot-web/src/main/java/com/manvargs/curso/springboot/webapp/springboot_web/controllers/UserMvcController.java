@@ -30,7 +30,7 @@ public class UserMvcController {
         return "details"; // si trabajamos con el modelo MVC los controladores deben retornar vistas o plantillas HTML del lado del servidor
     }
 
-    @GetMapping("/list")
+    @GetMapping("/mvc/list")
     public String list(ModelMap modelMap) { // ModelMap es una lista de Model
 //        List<User> users = Arrays.asList( // Arrays.asList() forma corta en vez de usar new ArrayList<>() y llenar la lista con .add
 //                new User("Lalo", "Gonzáles", "lalo@correo"),

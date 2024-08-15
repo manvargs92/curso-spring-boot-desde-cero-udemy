@@ -11,7 +11,7 @@
 
     <h1 th:text="${title}"></h1>
     <p th:if="${users.size() == 0}">¡La lista usuarios no tiene elementos!</p>
-    <table>
+    <table th:if="${users.size() != 0}">
         <thead>
             <tr>
                 <th>Name</th>
