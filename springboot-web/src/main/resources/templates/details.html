@@ -20,5 +20,10 @@
         <li th:if="${user.email == null}" th:text="${'No tiene contenido.'}"></li> <!-- condicional en Thymeleaf para un elemento por defecto -->
     </ul>
 
+    <a th:href="@{/mvc/list}">Ver listado</a>
+    <a th:href="@{'/api-params/send-one-parameter?message=' + ${title}}">Ver mensaje</a>
+    <a th:href="@{/api-params/send-one-parameter?Mensajito=Hola, Mundo!!}">Ver mensaje</a>
+    <a th:href="@{/api-params/send-one-parameter(Mensajito='Hola que tal')}">Ver mensaje</a>
+
 </body>
 </html>
