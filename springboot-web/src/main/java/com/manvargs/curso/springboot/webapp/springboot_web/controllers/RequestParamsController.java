@@ -1,6 +1,7 @@
 package com.manvargs.curso.springboot.webapp.springboot_web.controllers;
 
 import com.manvargs.curso.springboot.webapp.springboot_web.models.dto.ParamDto;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,23 @@ public class RequestParamsController {
         paramsDto.setCode(code);
 
         return paramsDto;
+    }
+
+    @GetMapping("/request")
+    public ParamDto requestFromHttpServlet(HttpServletRequest request) { // inyectamos el objeto HttpServletRequest en vez de usar anotaciones
+        int code = 0;
+
+        try {
+            Integer.parseInt( request.getParameter("code") ); // .getParameter siempre recive un String
+        }
+        catch (NumberFormatException exc) {}
+
+        ParamDto paramDto = new ParamDto();
+
+        paramDto.setCode(code);
+        paramDto.setMessage(request.getParameter("message"));
+
+        return paramDto;
     }
 
 }
