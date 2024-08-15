@@ -1,10 +1,8 @@
 package com.manvargs.curso.springboot.webapp.springboot_web.controllers;
 
+import com.manvargs.curso.springboot.webapp.springboot_web.models.User;
 import com.manvargs.curso.springboot.webapp.springboot_web.models.dto.ParamDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,5 +29,9 @@ public class PathVariableController {
         return variables;
     }
 
-
+    @PostMapping("/create")
+    public User createUser(@RequestBody User user) { // pasar un body al request
+        // aquí se haría algo con el usuario p.ej. guardar en la BD
+        return user;
+    }
 }
