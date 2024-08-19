@@ -22,4 +22,9 @@ public class ProductRepository {
         return this.data;
     }
 
+    public Product findById(Long id) {
+//        return data.stream().filter(p -> p.getId().equals(id)).findFirst().orElseThrow(); // si no encuentra el id, .orElseThrow() - regresará una excepción
+        return data.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null); // si no encuentra el id, .orElse(null) - regresará un null en vez de una execpción
+    }
+
 }
