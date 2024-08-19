@@ -13,15 +13,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class SomeController {
 
-    private ProductService service = new ProductService(); // objeto concreto que se está acoplando al controlador
+    private ProductService service = new ProductService(); // objeto concreto que se está acoplando al controlador; se mutarán los datos cada vez que un request acceda al objeto
 
     @GetMapping
     public List<Product> list() {
+//        ProductService service = new ProductService(); // de esta forma no se mutarán los datos al hacer el request pero no es buena práctica instanciar el objeto dentro del método del request
         return service.findAll();
     }
 
     @GetMapping("/{id}")
     public Product show(@PathVariable Long id) {
+//        ProductService service = new ProductService();
         return service.findById(id);
     }
 
