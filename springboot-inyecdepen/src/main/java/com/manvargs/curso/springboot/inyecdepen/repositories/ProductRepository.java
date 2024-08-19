@@ -1,3 +1,5 @@
+/* Esta es la capa de acceso a datos */
+
 package com.manvargs.curso.springboot.inyecdepen.repositories;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
