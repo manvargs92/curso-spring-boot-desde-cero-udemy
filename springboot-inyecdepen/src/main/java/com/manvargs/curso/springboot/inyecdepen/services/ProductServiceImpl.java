@@ -16,11 +16,20 @@ import java.util.stream.Collectors;
 @Service // anotación más especializada que la anotación @Component; indica que es una clase servicio (es una fachada para acceder a lógica de negocio)
 public class ProductServiceImpl implements IProductService {
 
-    @Autowired
+//    @Autowired
     private IProductRepository repository; // inyección mediante la interfaz (está desacoplado)
 //    @Autowired // anotación para inyección de dependencias
 //    private ProductRepositoryImpl repository; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
 //    private ProductRepositoryImpl repository = new ProductRepositoryImpl(); // simulamos los datos del repositorio
+
+    public ProductServiceImpl(IProductRepository repository) { // inyección de dependencias mediante el constructor (no es necesario la naotación @Autowired)
+        this.repository = repository;
+    }
+
+    //    @Autowired // inyectar la dependencia mediante el setter
+    public void setRepository(IProductRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public List<Product> findAll() {

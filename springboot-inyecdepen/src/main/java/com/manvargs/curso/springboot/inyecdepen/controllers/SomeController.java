@@ -15,11 +15,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class SomeController {
 
-    @Autowired
+//    @Autowired
     private IProductService service; // inyección mediante la interfaz (está desacoplado)
 //    @Autowired // anotación para inyección de dependencias
 //    private ProductServiceImpl service; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
 //    private ProductServiceImpl service = new ProductServiceImpl(); // objeto concreto que se está acoplando al controlador; se mutarán los datos cada vez que un request acceda al objeto
+
+
+    public SomeController(IProductService service) { // inyección de dependencias mediante el constructor (no es necesario la naotación @Autowired)
+        this.service = service;
+    }
 
     @GetMapping
     public List<Product> list() {
