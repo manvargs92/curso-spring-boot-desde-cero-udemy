@@ -7,11 +7,13 @@ import com.manvargs.curso.springboot.inyecdepen.repositories.IProductRepository;
 import com.manvargs.curso.springboot.inyecdepen.repositories.ProductRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+//@Component // indica que es un bean
+@Service // anotación más especializada que la anotación @Component; indica que es una clase servicio (es una fachada para acceder a lógica de negocio)
 public class ProductServiceImpl implements IProductService {
 
     @Autowired

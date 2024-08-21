@@ -4,11 +4,13 @@ package com.manvargs.curso.springboot.inyecdepen.repositories;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+//@Component // indica que es un bean
+@Repository // anotación más especializada que la anotación @Component; indica que es una clase repositorio
 public class ProductRepositoryImpl implements IProductRepository {
 
     private List<Product> data;
