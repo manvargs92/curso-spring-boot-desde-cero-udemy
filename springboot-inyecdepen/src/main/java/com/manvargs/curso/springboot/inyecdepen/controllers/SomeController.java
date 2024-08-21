@@ -2,6 +2,7 @@ package com.manvargs.curso.springboot.inyecdepen.controllers;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
 import com.manvargs.curso.springboot.inyecdepen.services.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class SomeController {
 
-    private ProductServiceImpl service = new ProductServiceImpl(); // objeto concreto que se está acoplando al controlador; se mutarán los datos cada vez que un request acceda al objeto
+    @Autowired // anotación para inyección de dependencias
+    private ProductServiceImpl service; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
+//    private ProductServiceImpl service = new ProductServiceImpl(); // objeto concreto que se está acoplando al controlador; se mutarán los datos cada vez que un request acceda al objeto
 
     @GetMapping
     public List<Product> list() {

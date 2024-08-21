@@ -3,10 +3,12 @@
 package com.manvargs.curso.springboot.inyecdepen.repositories;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class ProductRepositoryImpl implements IProductRepository {
 
     private List<Product> data;
