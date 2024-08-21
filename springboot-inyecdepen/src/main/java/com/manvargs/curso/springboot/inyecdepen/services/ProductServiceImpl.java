@@ -3,6 +3,7 @@
 package com.manvargs.curso.springboot.inyecdepen.services;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
+import com.manvargs.curso.springboot.inyecdepen.repositories.IProductRepository;
 import com.manvargs.curso.springboot.inyecdepen.repositories.ProductRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,10 @@ import java.util.stream.Collectors;
 @Component
 public class ProductServiceImpl implements IProductService {
 
-    @Autowired // anotación para inyección de dependencias
-    private ProductRepositoryImpl repository; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
+    @Autowired
+    private IProductRepository repository; // inyección mediante la interfaz (está desacoplado)
+//    @Autowired // anotación para inyección de dependencias
+//    private ProductRepositoryImpl repository; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
 //    private ProductRepositoryImpl repository = new ProductRepositoryImpl(); // simulamos los datos del repositorio
 
     @Override
