@@ -12,7 +12,7 @@ import java.util.List;
 
 //@Component // indica que es un bean
 @Primary // indica que este es el bean por defecto que implementa IProductRepository, ya que hay 2 beans que lo hacen (el otro es ProductRepositoryJPAJDB)
-@Repository // anotación más especializada que la anotación @Component; indica que es una clase repositorio
+@Repository("productList") // anotación más especializada que la anotación @Component; indica que es una clase repositorio
 public class ProductRepositoryImpl implements IProductRepository {
 
     private List<Product> data;

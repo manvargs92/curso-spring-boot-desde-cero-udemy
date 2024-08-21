@@ -1,12 +1,14 @@
 package com.manvargs.curso.springboot.inyecdepen.repositories;
 
 import com.manvargs.curso.springboot.inyecdepen.models.Product;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
 import java.util.List;
 
-@Repository
+//@Primary // indica que este es el bean por defecto que implementa IProductRepository, ya que hay 2 beans que lo hacen (el otro es ProductRepositoryImpl)
+@Repository("productFoo")
 public class ProductRepositoryJPAJDB implements IProductRepository {
     @Override
     public List<Product> findAll() {
