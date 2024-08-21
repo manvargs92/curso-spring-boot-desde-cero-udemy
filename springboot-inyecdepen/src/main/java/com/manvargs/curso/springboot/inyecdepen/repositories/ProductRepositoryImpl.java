@@ -6,12 +6,14 @@ import com.manvargs.curso.springboot.inyecdepen.models.Product;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.Arrays;
 import java.util.List;
 
 //@Component // indica que es un bean
 @Primary // indica que este es el bean por defecto que implementa IProductRepository, ya que hay 2 beans que lo hacen (el otro es ProductRepositoryJPAJDB)
+@RequestScope // alcance del request; cambia el contexto, la plicación dejará de ser singleton (un solo estado compartido por todos los usuarios) y empezará a ser por cada usuario (la data ya no se almacena en memoria de la aplicación)
 @Repository("productList") // anotación más especializada que la anotación @Component; indica que es una clase repositorio
 public class ProductRepositoryImpl implements IProductRepository {
 
