@@ -30,6 +30,6 @@ public class ProductRepositoryJson implements IProductRepository {
 
     @Override
     public Product findById(Long id) {
-        return null;
+        return list.stream().filter(product -> product.getId().equals(id)).findFirst().orElseThrow();
     }
 }

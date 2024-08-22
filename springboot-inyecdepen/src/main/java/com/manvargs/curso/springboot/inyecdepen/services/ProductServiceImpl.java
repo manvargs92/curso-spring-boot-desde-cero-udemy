@@ -27,7 +27,7 @@ public class ProductServiceImpl implements IProductService {
 //    private ProductRepositoryImpl repository; // sin crear la inatancia, de esta forma para inyección de dependencias (aún está fuertemente acoplado)
 //    private ProductRepositoryImpl repository = new ProductRepositoryImpl(); // simulamos los datos del repositorio
 
-    public ProductServiceImpl(@Qualifier("productList") IProductRepository repository) { // @Qualifier - selecciona cual bean inyectar (en nombre debe empezar en minúsculas o su alias de la anotación @Repository("productList") )
+    public ProductServiceImpl(@Qualifier("productRepository") IProductRepository repository) { // @Qualifier - selecciona cual bean inyectar (en nombre debe empezar en minúsculas o su alias de la anotación @Repository("productList") )
 //    public ProductServiceImpl(IProductRepository repository) { // inyección de dependencias mediante el constructor (no es necesario la naotación @Autowired)
         this.repository = repository;
     }
@@ -40,7 +40,6 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<Product> findAll() {
         return repository.findAll().stream().map(product -> { // el .map generará una nueva instancia de List<Product> cada vez que se ejecute
-            System.out.println(environment.getProperty("config.price.tax", Double.class));
             Double priceWithTax = product.getPrice() * environment.getProperty("config.price.tax", Double.class); // se realiza el cálculo del precio con impuesto
 //            Product newProd = new Product(product.getId(), product.getName(), priceWithTax.longValue()); // se crea un nuevo objeto de producto para no mutar los datos
 
