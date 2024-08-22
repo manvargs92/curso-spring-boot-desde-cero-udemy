@@ -7,6 +7,7 @@ import com.manvargs.curso.springboot.inyecdepen.repositories.IProductRepository;
 import com.manvargs.curso.springboot.inyecdepen.repositories.ProductRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 //@Component // indica que es un bean
 @Service // anotación más especializada que la anotación @Component; indica que es una clase servicio (es una fachada para acceder a lógica de negocio)
 public class ProductServiceImpl implements IProductService {
+
+    @Autowired
+    private Environment environment; // para usar el valor en values.properties
 
 //    @Autowired
     private IProductRepository repository; // inyección mediante la interfaz (está desacoplado)
@@ -36,7 +40,8 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<Product> findAll() {
         return repository.findAll().stream().map(product -> { // el .map generará una nueva instancia de List<Product> cada vez que se ejecute
-            Double priceWithTax = product.getPrice() * 1.25; // se realiza el cálculo del precio con impuesto
+            System.out.println(environment.getProperty("config.price.tax", Double.class));
+            Double priceWithTax = product.getPrice() * environment.getProperty("config.price.tax", Double.class); // se realiza el cálculo del precio con impuesto
 //            Product newProd = new Product(product.getId(), product.getName(), priceWithTax.longValue()); // se crea un nuevo objeto de producto para no mutar los datos
 
             Product newProd = (Product) product.clone(); // en vez de crear la instancia de Producto, lo clonamos
