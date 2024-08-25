@@ -3,11 +3,13 @@ package com.manvargs.curso.springboot.di.factura.springboot_difactura.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Invoice {
 
+    @Value("${invoice.description}")
     private String description;
     private List<Item> items;
 
