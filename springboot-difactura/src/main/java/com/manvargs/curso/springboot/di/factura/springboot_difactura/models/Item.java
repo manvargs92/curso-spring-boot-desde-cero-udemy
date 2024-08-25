@@ -6,6 +6,14 @@ public class Item {
 
     private Product product;
 
+    public Item() {
+    }
+
+    public Item(int quantity, Product product) {
+        Quantity = quantity;
+        this.product = product;
+    }
+
     public int getQuantity() {
         return Quantity;
     }

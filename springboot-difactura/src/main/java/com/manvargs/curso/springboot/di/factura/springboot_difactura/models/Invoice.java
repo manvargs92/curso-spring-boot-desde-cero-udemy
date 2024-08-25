@@ -24,6 +24,7 @@ public class Invoice {
         this.description = description;
     }
 
+    @Autowired
     public List<Item> getItems() {
         return items;
     }
