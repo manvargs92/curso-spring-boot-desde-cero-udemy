@@ -13,7 +13,7 @@ import com.manvargs.curso.springboot.di.factura.springboot_difactura.models.Prod
 
 @Configuration
 @PropertySources(
-    @PropertySource("classpath:data.properties")
+    @PropertySource(value = "classpath:data.properties", encoding = "UTF-8")
 )
 public class AppConfig {
 

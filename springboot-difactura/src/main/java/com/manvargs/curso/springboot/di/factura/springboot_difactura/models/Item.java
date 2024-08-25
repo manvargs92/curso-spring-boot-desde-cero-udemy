@@ -2,24 +2,24 @@ package com.manvargs.curso.springboot.di.factura.springboot_difactura.models;
 
 public class Item {
 
-    private int Quantity;
+    private Integer quantity;
 
     private Product product;
 
     public Item() {
     }
 
-    public Item(int quantity, Product product) {
-        Quantity = quantity;
+    public Item(Integer quantity, Product product) {
+        this.quantity = quantity;
         this.product = product;
     }
 
-    public int getQuantity() {
-        return Quantity;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Product getProduct() {
@@ -28,6 +28,10 @@ public class Item {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public int getImporte() {
+        return quantity * product.getPrice();
     }
 
 }
