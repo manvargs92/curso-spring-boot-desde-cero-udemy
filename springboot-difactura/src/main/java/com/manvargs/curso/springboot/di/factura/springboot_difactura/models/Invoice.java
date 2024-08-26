@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class Invoice {
 
@@ -20,6 +22,15 @@ public class Invoice {
 
     @Autowired
     private Client client;
+
+    /* Ciclo de vida del componente */
+    @PostConstruct // indica que la siguiente fucnión se ejecutará al inicio del ciclo de vida del componente (cuando se crea)
+    public void init() {
+        System.out.println("Creando el componente de la factura");
+        client.setName(client.getName().concat("JUANITO"));
+        description = description.concat(" DEL CLIENTE: ").concat(client.getName()).concat(" ").concat(client.getLastname());
+    }
+    /****************************** */
 
     public String getDescription() {
         return description;
