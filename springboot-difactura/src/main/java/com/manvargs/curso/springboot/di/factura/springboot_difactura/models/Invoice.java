@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Component
 public class Invoice {
@@ -29,6 +30,11 @@ public class Invoice {
         System.out.println("Creando el componente de la factura");
         client.setName(client.getName().concat("JUANITO"));
         description = description.concat(" DEL CLIENTE: ").concat(client.getName()).concat(" ").concat(client.getLastname());
+    }
+
+    @PreDestroy // indica ejecutar la fucnión antes de destruir el componente o bean, esto sirve para ejecutar una tarea como puede ser, cerrar un recurso o una conexión a BD
+    public void destroy() {
+        System.out.println("Destruyendo el componente o bean Invoice...");
     }
     /****************************** */
 
