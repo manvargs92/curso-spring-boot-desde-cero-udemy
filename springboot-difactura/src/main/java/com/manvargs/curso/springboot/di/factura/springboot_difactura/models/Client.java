@@ -2,8 +2,15 @@ package com.manvargs.curso.springboot.di.factura.springboot_difactura.models;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
+// @SessionScope // scope del componente, ya no será compartido por toda la aplicación, solo por cada sesión de usuario; se generará un proxy por cada sesión
+@RequestScope
+// @JsonIgnoreProperties({"targetSource", "advisors"}) // ignorar los atributos del JSON, en este caso los atributos que genera el proxy
 public class Client {
 
     @Value("${client.name}")

@@ -6,11 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.ApplicationScope;
+import org.springframework.web.context.annotation.RequestScope;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
 @Component
+// @ApplicationScope // scope del componente; será compartido por todos los usuarios de la aplicación; el scope es mas amplio que el de un singleton (una sola aplicación)
+@RequestScope // scope del componente; se generará un proxy por cada request y ya no será compartido por toda la aplicación, el cual será inyectado en el InvoiceController
+// @JsonIgnoreProperties({"targetSource", "advisors"}) // ignorar los atributos del JSON, en este caso los atributos que genera el proxy
 public class Invoice {
 
     @Value("${invoice.description.office}")
@@ -25,14 +32,14 @@ public class Invoice {
     private Client client;
 
     /* Ciclo de vida del componente */
-    @PostConstruct // indica que la siguiente fucnión se ejecutará al inicio del ciclo de vida del componente (cuando se crea)
+    @PostConstruct // indica que la siguiente función se ejecutará al inicio del ciclo de vida del componente (cuando se crea)
     public void init() {
         System.out.println("Creando el componente de la factura");
         client.setName(client.getName().concat("JUANITO"));
         description = description.concat(" DEL CLIENTE: ").concat(client.getName()).concat(" ").concat(client.getLastname());
     }
 
-    @PreDestroy // indica ejecutar la fucnión antes de destruir el componente o bean, esto sirve para ejecutar una tarea como puede ser, cerrar un recurso o una conexión a BD
+    @PreDestroy // indica ejecutar la función antes de destruir el componente o bean, esto sirve para ejecutar una tarea como puede ser, cerrar un recurso o una conexión a BD
     public void destroy() {
         System.out.println("Destruyendo el componente o bean Invoice...");
     }
