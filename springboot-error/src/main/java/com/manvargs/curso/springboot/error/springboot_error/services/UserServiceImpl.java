@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.manvargs.curso.springboot.error.springboot_error.exceptions.UserNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manvargs.curso.springboot.error.springboot_error.models.domain.User;
@@ -12,17 +13,19 @@ import com.manvargs.curso.springboot.error.springboot_error.models.domain.User;
 @Service
 public class UserServiceImpl implements IUserService {
 
+    @Autowired
     private List<User> users;
-
-    public UserServiceImpl() {
-        this.users = new ArrayList<>();
-        
-        users.add(new User(1L, "Pepe", "González"));
-        users.add(new User(2L, "Andrés", "Mena"));
-        users.add(new User(3L, "María", "Pérez"));
-        users.add(new User(4L, "Josefa", "Ramírez"));
-        users.add(new User(5L, "Ale", "Gutierrez"));
-    }
+//    private List<User> users;
+//
+//    public UserServiceImpl() {
+//        this.users = new ArrayList<>();
+//
+//        users.add(new User(1L, "Pepe", "González"));
+//        users.add(new User(2L, "Andrés", "Mena"));
+//        users.add(new User(3L, "María", "Pérez"));
+//        users.add(new User(4L, "Josefa", "Ramírez"));
+//        users.add(new User(5L, "Ale", "Gutierrez"));
+//    }
 
     @Override
     public List<User> findAll() {
@@ -50,18 +53,18 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Optional<User> findById(Long id) {
 
+        Optional<User> user = users.stream().filter(usr -> usr.getId().equals(id)).findFirst(); // forma más elegante en vez de usar el for e if de abajo
+//        User user = null;
+//
+//        for (User u : users) {
+//            if (u.getId().equals(id)) {
+//                user = u;
+//                break;
+//            }
+//        }
 
-
-        User user = null;
-
-        for (User u : users) {
-            if (u.getId().equals(id)) {
-                user = u;
-                break;
-            }
-        }
-
-        return Optional.ofNullable(user); // si lo encuentra devolverá un optional del objeto User; si no lo encuentra devolverá un Optional EMPTY
+//        return Optional.ofNullable(user); // si lo encuentra devolverá un optional del objeto User; si no lo encuentra devolverá un Optional EMPTY}
+        return user;
     }
 
 }
