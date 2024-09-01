@@ -24,13 +24,17 @@ public class AppController {
         return "OK 200";
     }
 
+    // con el uso de Optional
     @GetMapping("/show/{id}")
     public User show(@PathVariable Long id) {
-        User user = service.findById(id);
 
-        if (user == null) {
-            throw new UserNotFoundException("Error: el usuario no existe.");
-        }
+        User user = service.findById(id).orElseThrow(() -> new UserNotFoundException("Error: el usuario no existe."));
+
+//        User user = service.findById(id);
+
+//        if (user == null) {
+//            throw new UserNotFoundException("Error: el usuario no existe.");
+//        }
 
         System.out.println(user.getLastName());
         return user;
