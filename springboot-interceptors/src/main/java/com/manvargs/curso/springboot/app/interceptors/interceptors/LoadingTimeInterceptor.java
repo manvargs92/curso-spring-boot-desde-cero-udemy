@@ -1,5 +1,6 @@
 package com.manvargs.curso.springboot.app.interceptors.interceptors;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -9,6 +10,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @Component("timeInterceptor")
@@ -29,7 +33,18 @@ public class LoadingTimeInterceptor implements HandlerInterceptor {
         int delay = random.nextInt(2000); // genera un valor entero entre 0 y 500
         Thread.sleep(delay);
 
-        return true;
+        // devolver un mensaje si no se puede acceder al interceptor
+        Map<String, String> json = new HashMap<>();
+        json.put("error", "No tienes acceso a este recurso.");
+        json.put("date", new Date().toString());
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(json); // convetir el json a string
+        response.setContentType("application/json");
+        response.setStatus(401);
+        response.getWriter().write(jsonString);
+        return false; // si el handler devuelve false, restringe el acceso al controlador y a los demásinterceptores que tenga el método
+
+//        return true;
     }
 
     @Override
